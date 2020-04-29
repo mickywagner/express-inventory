@@ -11,7 +11,7 @@ var ItemCopySchema = new Schema(
     }
 )
 
-ItemCopy
+ItemCopySchema
     .virtual('url')
     .get(function() {
         return '/itemcopy/' + this._id

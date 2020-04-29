@@ -6,10 +6,12 @@ var ItemSchema = new Schema(
     {
         name: {type: String, required: true},
         description: {type: String, required: true},
+        category: { type: Schema.Types.ObjectId, ref: 'Category', required: true},
         rarity: {type: String, required: true, enum: ['Common', 'Uncommon', 'Rare', 'Very Rare', 'Legendary'], default: 'Common'},
-        category: { type: Schema.Types.ObjectId, ref: 'Category', required: true}
+        damage: { type: String},    
     }
 )
+
 
 ItemSchema
     .virtual('url')
