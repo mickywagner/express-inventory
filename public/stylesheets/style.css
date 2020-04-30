@@ -1,8 +1,50 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
-a {
-  color: #00B7FF;
+body {
+  width: 100vw;
+  height: 100vh;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: rgba(233, 197, 130, 0.966);
+  display: grid;
+  grid-template-rows: 50px 1fr 70px;
+  grid-template-areas:
+    "h h h h h h"
+    "s s s s s s"
+    "s s s s s s"
+    "s s s s s s"
+    "f f f f f f";
+  grid-gap: 10px;
+}
+
+header {
+  grid-area: h;
+  border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+nav a {
+  padding: 5px 10px;
+}
+
+main {
+  grid-area: s;
+  padding: 20px;
+}
+
+footer {
+  grid-area: f;
+  text-align: center;
+  padding: 10px;
 }
