@@ -31,8 +31,26 @@ exports.category_list = function(req, res, next) {
         }) 
 }
 
-exports.category_detail = function(req, res) {
-    res.send('FUTURE CATEGORY DETAIL PAGE')
+exports.category_detail = function(req, res, next) {
+    async.parallel({
+        category: function(callback) {
+            Category.findById(req.params.id)
+                .exec(callback)
+        },
+        items: function(callback) {
+            Item.find({'category': req.params.id})
+                .exec(callback)
+        }
+    }, function(err, results) {
+        if(err) { return next(err)}
+        if(results.category==null) {
+            var err = new Error('Category not found')
+            err.status = 404
+            return next(err)
+        }
+        res.render('category_detail', {title: 'Category Details', category: results.category, items: results.items})
+    })
+            
 }
 
 exports.category_create_get = function(req, res) {

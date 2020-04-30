@@ -6,5 +6,7 @@ block content
 
     for category in category_list
         .category-list
-            h3 #{category.name}
+            h4
+                a(href=category.url) #{category.name} 
             p #{category.description}
+            

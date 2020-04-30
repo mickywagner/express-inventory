@@ -50,6 +50,10 @@ main {
   padding: 20px;
 }
 
+.category-list {
+  border: 2px solid black;
+}
+
 footer {
   grid-area: f;
   text-align: center;

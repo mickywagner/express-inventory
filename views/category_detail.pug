@@ -1,0 +1,19 @@
+extends layout
+
+block content
+    h1 #{title}
+
+    .category-detail
+        h2 #{category.name}
+        p #{category.description}
+
+        .category-items
+        p We have a variety of items in the #{category.name} category
+
+        ul
+
+        for item in items  
+            li 
+                a(href=item.url) #{item.name}
+            
+
