@@ -22,8 +22,13 @@ exports.index = function(req, res, next) {
    
 }
 
-exports.category_list = function(req, res) {
-    res.send('FUTURE CATEGORY LIST')
+exports.category_list = function(req, res, next) {
+    Category.find()
+        .populate('category')
+        .exec(function(err, list_category) {
+            if(err) {return next(err)}
+            res.render('category_list', {title: 'Equipment Category List', category_list: list_category})
+        }) 
 }
 
 exports.category_detail = function(req, res) {
