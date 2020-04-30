@@ -25,18 +25,25 @@ header {
   border-bottom: 1px solid black;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
 }
 
 nav {
   display: flex;
-  justify-content: flex-end;
+  width: 100%;
   align-items: center;
+  justify-content: flex-start;
 }
 
-nav a {
-  padding: 5px 10px;
+a {
+  margin: 5px 10px;
 }
+
+a:first-of-type {
+  margin-right: auto;
+  font-size: 2em;
+  text-decoration: none;
+}
+
 
 main {
   grid-area: s;

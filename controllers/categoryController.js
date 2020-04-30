@@ -1,7 +1,25 @@
 var Category = require('../models/category')
+var Item = require('../models/item')
+var itemCopy = require('../models/itemcopy')
+
+var async = require('async')
 
 exports.index = function(req, res, next) {
-    res.render('index', { title: 'The Wandering Turtle'})
+
+    async.parallel({
+        category_count: function(callback) {
+            Category.countDocuments({}, callback)
+        },
+        item_count: function(callback) {
+            Item.countDocuments({}, callback)
+        },
+        itemcopy_count: function(callback) {
+            itemCopy.countDocuments({}, callback)
+        }
+    }, function(err, results) {
+        res.render('index', { title: 'The Wandering Turtle Equipment Emporium', errors: err, data: results})
+    })
+   
 }
 
 exports.category_list = function(req, res) {

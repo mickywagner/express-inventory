@@ -1,6 +1,18 @@
 extends layout
 
 block content 
-    h1 Hello welcome to the #{title}
-    h2 Stop by to see our latest inventory of weapons, trinkets, and adventuring gear!
+    h1 Hello! Welcome to the #{title}
+    h2 Purveyors of Adventuring Gear since 3001 Fourth Age
+
+    p #{title} is proud to bring out gear to you. Check out our latest assortment of trinkets, finely-crafted weaponry, and everyday equipment for your adventuring needs. Peruse our inventory here:
+
+    if error
+        p Sorry! Inventory failed to load!
+    else 
+        p #{title} currently sells the following equipment categories and respective items:
+        ul
+            li #[strong Equipment Categories]: !{data.category_count}
+            li #[strong Items]: !{data.item_count}
+            li #[strong Item Copies]: !{data.itemcopy_count}
+            li #[strong Items Available for Sale]: #{data.itemcopy_available_count}
 
