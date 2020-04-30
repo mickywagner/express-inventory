@@ -14,7 +14,7 @@ var ItemCopySchema = new Schema(
 ItemCopySchema
     .virtual('url')
     .get(function() {
-        return '/itemcopy/' + this._id
+        return '/store/itemcopy' + this._id
     })
 
 module.exports = mongoose.model('ItemCopy', ItemCopySchema)
