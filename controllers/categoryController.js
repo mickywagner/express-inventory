@@ -1,5 +1,9 @@
 var Category = require('../models/category')
 
+exports.index = function(req, res, next) {
+    res.render('index', { title: 'The Wandering Turtle'})
+}
+
 exports.category_list = function(req, res) {
     res.send('FUTURE CATEGORY LIST')
 }
