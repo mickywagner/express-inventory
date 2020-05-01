@@ -1,7 +1,12 @@
 var itemCopy = require('../models/itemcopy')
 
-exports.itemCopy_list = function(req, res) {
-    res.send('ITEM COPY LIST')
+exports.itemCopy_list = function(req, res, next) {
+    itemCopy.find()
+        .populate('item')
+        .exec(function(err, item_copies) {
+            if(err) {return next(err)}
+            res.render('itemcopy_list', {title: 'Item Inventory List', item_copies: item_copies})
+        })
 }
 
 exports.itemCopy_detail = function(req, res) {

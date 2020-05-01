@@ -1,0 +1,43 @@
+extends layout
+
+block content
+    h1 #{title}
+    p A list of all our items (available, on order, and out of stock)
+
+    h3 Available
+        //- list all available 
+
+    dl
+        each item in item_copies
+            if item.status === 'Available'
+                dt
+                        a(href=item.id) #{item.item.name}
+        
+        else 
+            p No items are currently available
+
+
+    h3 On Order
+        //- list all items on order
+
+        dl
+            each item in item_copies
+                if item.status === 'On Order'
+                    dt
+                        a(href=item.id) #{item.item.name}
+            
+            else 
+                p We are currently not restocking
+
+    h3 Out of Stock
+        //- currently out of stock
+
+        dl
+            each item in item_copies
+                if item.status === 'Out of Stock'
+                    dt
+                        a(href=item.id) #{item.item.name}
+            
+            else 
+                p No items currently out of stock
+
