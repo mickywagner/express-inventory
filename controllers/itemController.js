@@ -1,7 +1,12 @@
 var Item = require('../models/item')
 
-exports.item_list = function(req, res) {
-    res.send('FUTURE ITEM LIST')
+exports.item_list = function(req, res, next) {
+    Item.find()
+        .populate('item')
+        .exec(function(err, list_items) {
+            if(err) {return next(err)}
+            res.render('item_list', {title: 'Item List', items: list_items})
+        })
 }
 
 exports.item_detail = function(req, res) {

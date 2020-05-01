@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    h1 #{title}
+    p We regularily stock the following items:
+
+    dl
+        each item in items
+            dt  
+                a(href=item.url) #{item.name}
+            
+        else 
+            p There are no items
+
