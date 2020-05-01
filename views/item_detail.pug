@@ -1,0 +1,30 @@
+extends layout
+
+block content
+    h1 #{title}
+    .item-detail
+        .header
+            h2 #{item.name} (#{item.rarity})
+            p #[strong Description: ]#{item.description}
+
+        .main
+            if item.damage
+                p #[strong Damage:] #{item.damage}
+
+            p #[strong Category:] #{item.category.name}
+    
+        .item-copies-list
+            h2 Inventory summary:
+
+            each item in item_copies
+
+                .copies
+                    a(href=item.url) #[strong Item ID: ] #{item._id}  
+                    p #[strong Price: ]#{item.price}
+                    p #[strong Weight: ]#{item.weight}
+                    p #[strong #{item.status}]
+            
+            else 
+                p Sorry, we currently have no inventory available or on order at the moment. Please check back soon!
+                   
+

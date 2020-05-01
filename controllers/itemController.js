@@ -1,4 +1,7 @@
 var Item = require('../models/item')
+var ItemCopy = require('../models/itemcopy')
+
+var async = require('async')
 
 exports.item_list = function(req, res, next) {
     Item.find()
@@ -9,8 +12,26 @@ exports.item_list = function(req, res, next) {
         })
 }
 
-exports.item_detail = function(req, res) {
-    res.send('FUTURE ITEM DETAILS')
+exports.item_detail = function(req, res, next) { 
+    async.parallel({
+        item: function(callback) {
+            Item.findById(req.params.id)
+                .populate('category')
+                .exec(callback)
+        },
+        item_copies: function(callback) {
+            ItemCopy.find({'item': req.params.id})
+                .exec(callback)
+        }
+    }, function(err, results) {
+        if(err) {return next(err)}
+        if(results.item==null) {
+            var error = new Error('Item not found!')
+            error.status = 404
+            return next(error)
+        }
+        res.render('item_detail', {title: 'Item Details', item: results.item, item_copies: results.item_copies})
+    })
 }
 
 exports.item_create_get = function(req, res) {

@@ -34,11 +34,11 @@ nav {
   justify-content: flex-start;
 }
 
-a {
+nav a {
   margin: 5px 10px;
 }
 
-a:first-of-type {
+nav a:first-of-type {
   margin-right: auto;
   font-size: 2em;
   text-decoration: none;
@@ -53,6 +53,11 @@ main {
 .category-list {
   border: 2px solid black;
 }
+
+.item-detail {
+  border: 1px solid black;
+}
+
 
 footer {
   grid-area: f;
