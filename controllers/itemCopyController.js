@@ -9,8 +9,18 @@ exports.itemCopy_list = function(req, res, next) {
         })
 }
 
-exports.itemCopy_detail = function(req, res) {
-    res.send('ITEM COPY DETAILS')
+exports.itemCopy_detail = function(req, res, next) {
+    itemCopy.findById(req.params.id)
+        .populate('item')
+        .exec(function(err, item){
+            if(err) {return next(err)}
+            if(item==null) {
+                var error = new Error('This item does not exist')
+                error.status = 404
+                return next(error)
+            }
+            res.render('itemcopy_detail', {title: 'Item Copy Details', itemcopy: item})
+        })
 }
 
 exports.itemCopy_create_get = function(req, res) {

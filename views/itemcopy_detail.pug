@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    h1 #{title}
+
+    h2 #{itemcopy.item.name} (#{itemcopy.item.rarity})
+    p #[strong Inventory ID: ] #{itemcopy.id}
+    
+    p #{itemcopy.item.description}
+
+    p #[strong Unit weight: ] #{itemcopy.weight}
+    p #[strong Unit price:  ] #{itemcopy.price}
+    if itemcopy.item.damage 
+    p #[strong Damage: ] #{itemcopy.item.damage}
+
