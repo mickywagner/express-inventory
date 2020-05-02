@@ -15,6 +15,12 @@ exports.index = function(req, res, next) {
         },
         itemcopy_count: function(callback) {
             itemCopy.countDocuments({}, callback)
+        },
+        itemcopy_count_available: function(callback) {
+            itemCopy.countDocuments({status: 'Available'}, callback)
+        },
+        itemcopy_count_onorder: function(callback) {
+            itemCopy.countDocuments({status: 'On Order'}, callback)
         }
     }, function(err, results) {
         res.render('index', { title: 'The Wandering Turtle Equipment Emporium', errors: err, data: results})
