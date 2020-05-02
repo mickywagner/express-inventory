@@ -53,8 +53,8 @@ exports.category_detail = function(req, res, next) {
             
 }
 
-exports.category_create_get = function(req, res) {
-    res.send('CREATE CATEGORY GET')
+exports.category_create_get = function(req, res, next) {
+    res.render('category_form', {title: 'Create New Equipment Category'})
 }
 
 exports.category_create_post = function(req, res) {
