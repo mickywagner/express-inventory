@@ -4,11 +4,10 @@ block content
     h1 #{title}
 
     form(action='' method='POST')
-        .form-group
             label(for='name') Name:
-            input#name.form-control(type='text', placeholder='Weapons, Potions, Armor, etc' name='name')
+            input#name.form-control(type='text', placeholder='Weapons, Potions, Armor, etc' name='name' required='true')
             label(for='description') Description:
-            textarea#description(rows="10")
+            textarea#description(rows="10" required='true' placeholder='Category description')
         button#submit Submit
     
     if errors

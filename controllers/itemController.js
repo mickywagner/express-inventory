@@ -1,5 +1,6 @@
 var Item = require('../models/item')
 var ItemCopy = require('../models/itemcopy')
+var Category = require('../models/category')
 
 var async = require('async')
 
@@ -34,8 +35,12 @@ exports.item_detail = function(req, res, next) {
     })
 }
 
-exports.item_create_get = function(req, res) {
-    res.send('FUTURE CREATE ITEM GET')
+exports.item_create_get = function(req, res, next) {
+    Category.find()
+        .exec(function(err, category) {
+            if(err) { return next(err)}
+            res.render('item_form', {title: 'Create New Item Listing', categories: category})
+        })
 }
 
 exports.item_create_post = function(req, res) {
