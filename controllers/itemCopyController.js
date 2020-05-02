@@ -1,4 +1,5 @@
 var itemCopy = require('../models/itemcopy')
+var Item = require('../models/item')
 
 exports.itemCopy_list = function(req, res, next) {
     itemCopy.find()
@@ -23,8 +24,12 @@ exports.itemCopy_detail = function(req, res, next) {
         })
 }
 
-exports.itemCopy_create_get = function(req, res) {
-    res.send('FUTURE ITEM COPY CREATE GET')
+exports.itemCopy_create_get = function(req, res, next) {
+    Item.find()
+        .exec(function(err, items) {
+            if(err) {return next(err)}
+            res.render('itemcopy_form', {title: 'Create New Item Copy', items: items})
+        })
 }
 
 exports.itemCopy_create_post = function(req, res) {
