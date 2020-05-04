@@ -2,6 +2,9 @@ var Category = require('../models/category')
 var Item = require('../models/item')
 var itemCopy = require('../models/itemcopy')
 
+const { body, validationResult } = require('express-validator/check')
+const { sanitizeBody } = require('express-validator/filter')
+
 var async = require('async')
 
 exports.index = function(req, res, next) {
@@ -63,9 +66,43 @@ exports.category_create_get = function(req, res, next) {
     res.render('category_form', {title: 'Create New Equipment Category'})
 }
 
-exports.category_create_post = function(req, res) {
-    res.send('CREATE CATEGORY POST')
-}
+exports.category_create_post = [
+    body('name', 'Category name is required').trim().isLength({min: 1}),
+    body('description', 'Category description is required').trim().isLength({min: 1}),
+
+    sanitizeBody('name').escape(),
+    sanitizeBody('description').escape(),
+
+    (req, res, next) => {
+        const errors = validationResult(req)
+
+        var category = new Category(
+            {
+                name: req.body.name,
+                description: req.body.description
+            }
+        )
+
+        if (!errors.isEmpty()) {
+            res.render('category_form', { title: 'Create New Equipment Category', category: category, errors: errors.array()})
+        } else {
+            Category.findOne({'name': req.body.name})
+                .exec(function(err, found_category) {
+                    if(err) { return next(err)}
+
+                    if(found_category) {
+                        res.redirect(found_category.url)
+                    } else {
+                        category.save(function(err) {
+                            if(err) { return next(err)}
+                            res.redirect(category.url)
+                        })
+                    }
+                })
+        }
+    }
+    
+]
 
 exports.category_update_get = function(req, res) {
     res.send('UPDATE CATEGORY GET')

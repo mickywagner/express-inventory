@@ -7,7 +7,7 @@ block content
         label(for='name') Name:
         input#name.form-control(type='text', placeholder='Weapons, Potions, Armor, etc' name='name' required='true')
         label(for='description') Description:
-        textarea#description(rows="10" required='true' placeholder='Category description')
+        textarea#description.form-control(rows="10" required='true' placeholder='Category description' name="description")
         button#submit Submit
     
     if errors
