@@ -103,8 +103,8 @@ exports.category_create_post = [
     }  
 ]
 
-exports.category_update_get = function(req, res) {
-    res.send('UPDATE CATEGORY GET')
+exports.category_update_get = function(req, res, next) {
+    res.render('category_form', {title: 'Update Category'})
 }
 
 exports.category_update_post = function(req, res) {
