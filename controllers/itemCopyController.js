@@ -1,6 +1,9 @@
 var itemCopy = require('../models/itemcopy')
 var Item = require('../models/item')
 
+const { body, validationResult } = require('express-validator/check')
+const { sanitizeBody } = require('express-validator/filter')
+
 exports.itemCopy_list = function(req, res, next) {
     itemCopy.find()
         .populate('item')
@@ -32,9 +35,40 @@ exports.itemCopy_create_get = function(req, res, next) {
         })
 }
 
-exports.itemCopy_create_post = function(req, res) {
-    res.send('FUTURE ITEM COPY CREATE POST')
-}
+exports.itemCopy_create_post = [
+    body('item', 'Item is required').trim().isLength({min: 1}),
+    body('price').optional({checkFalsy: true}),
+    body('weight').optional({checkFalsy:true}),
+    body('status', 'Status is required').trim().isLength({min: 3}),
+
+    sanitizeBody('*').escape(),
+
+    (req, res, next) => {
+        const errors = validationResult(req)
+
+        var itemcopy = new itemCopy(
+            {
+                item: req.body.item,
+                price: req.body.price,
+                weight: req.body.weight,
+                status: req.body.status
+            }
+        )
+
+        if(!errors.isEmpty()) {
+            Item.find()
+                .exec(function(err, items) {
+                    if(err) { return next(err)}
+                    res.render('itemcopy_form', { title: 'Create New Item Copy', items: items, errors: errors.array()})
+                })
+        } else {
+            itemcopy.save(function(err) {
+                if(err) { return next(err)}
+                res.redirect(itemcopy.url)
+            })
+        }
+    }
+]
 
 exports.itemCopy_update_get = function(req, res) {
     res.send('FUTURE ITEM COPY UPDATE GET')

@@ -4,18 +4,23 @@ block content
     h1 #{title}
 
     form(action="" method='POST')
-        label(for="item")
-        select#item.form-control(type='select' placeholder="Select an item" required=true)
+        label(for="item") Item: 
+        select#item.form-control(name='item' type='select' placeholder="Select an item" required=true)
              - items.sort(function(a, b) {let textA = a.name.toUpperCase(); let textB = b.name.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
              for item in items
-                option(value=item.name) #{item.name}
+                option(value=item._id) #{item.name}
         label(for='price') Price:
-        input#price.form-control(type='text' placeholder='5 platinum/gold/copper/silver pieces' required=true)
+        input#price.form-control(name='price' type='text' placeholder='5 platinum/gold/copper/silver pieces' required=true)
         label(for='weight') Weight:
-        input#weight.form-control(type='number' required=true min=1)
+        input#weight.form-control(name='weight' type='number' required=true min=1)
         label(for='status') Status:
-        select#status.form-control(type='select' placeholder='Select a status' required=true)
+        select#status.form-control(name='status' type='select' placeholder='Select a status' required=true)
             option(value='Available') Available
             option(value='On Order') On Order
             option(value='Out of Stock') Out of Stock
         button#submit Submit
+    
+    if errors
+        ul
+        for error in errors
+            li!= error.msg

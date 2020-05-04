@@ -7,19 +7,19 @@ block content
         label(for="name") Name:
         input#name.form-control(type='text' name='name' placeholder='Short sword, Hangover cure, blanket, etc...')
         label(for="category") Category:
-        select#category.form-control(type='select' placeholder='Selet Category' required=true)
+        select#category.form-control(name="category" type='select' placeholder='Selet Category' required=true)
             - categories.sort(function(a, b) {let textA = a.name.toUpperCase(); let textB = b.name.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
             each category in categories
-                option(value=category.name) #{category.name}
+                option(value=category._id) #{category.name}
         label(for="rarity") Rarity:
-        select#rarity.form-control(type='select' placeholder='Select rarity' required='true')
+        select#rarity.form-control(name="rarity" type='select' placeholder='Select rarity' required='true')
             option(value='Common') Common
             option(value='Uncommon') Uncommon
             option(value='Rare') Rare
             option(value='Very Rare') Very Rare
             option(value='Legendary') Legendary
         label(for="description") Description:
-        textarea#description(rows="10" required=true placeholder='Enter short item description')
+        textarea#description.form-control(name="description" rows="10" required=true placeholder='Enter short item description')
         label(for="damage") Damage (optional):
         input#damage.form-control(type='text' name='name' placeholder='1d6 piercing')
         //- name, description, category, rarity, damage (optional)

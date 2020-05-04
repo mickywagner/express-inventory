@@ -100,8 +100,7 @@ exports.category_create_post = [
                     }
                 })
         }
-    }
-    
+    }  
 ]
 
 exports.category_update_get = function(req, res) {
