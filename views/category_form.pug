@@ -5,9 +5,9 @@ block content
 
     form(action='' method='POST')
         label(for='name') Name:
-        input#name.form-control(type='text', placeholder='Weapons, Potions, Armor, etc' name='name' required='true')
+        input#name.form-control(type='text' placeholder='Weapons, Potions, Armor, etc' name='name' value=(category===undefined ? '' : category.name))
         label(for='description') Description:
-        textarea#description.form-control(rows="10" required='true' placeholder='Category description' name="description")
+        textarea#description.form-control(rows="10" required='true' placeholder='Category description' name="description") #{category===undefined ? '' : category.description}
         button#submit Submit
     
     if errors

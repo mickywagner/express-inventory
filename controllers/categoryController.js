@@ -104,7 +104,12 @@ exports.category_create_post = [
 ]
 
 exports.category_update_get = function(req, res, next) {
-    res.render('category_form', {title: 'Update Category'})
+    Category.findById(req.params.id)
+        .exec(function(err, category) {
+            if(err) { return next(err)}
+            res.render('category_form', {title: 'Update Category', category: category})
+        })
+    
 }
 
 exports.category_update_post = function(req, res) {
