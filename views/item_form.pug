@@ -2,28 +2,31 @@ extends layout
 
 block content
     h1 #{title}
+    h2 #{selected_item}
+  
 
     form(action='' method='POST')
         label(for="name") Name:
-        input#name.form-control(type='text' name='name' placeholder='Short sword, Hangover cure, blanket, etc...')
+        input#name.form-control(type='text' name='name' placeholder='Short sword, Hangover cure, blanket, etc...' value=(item===undefined ? '' : item.name))
         label(for="category") Category:
         select#category.form-control(name="category" type='select' placeholder='Selet Category' required=true)
             - categories.sort(function(a, b) {let textA = a.name.toUpperCase(); let textB = b.name.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
             each category in categories
-                option(value=category._id) #{category.name}
+                option(value=(category._id) selected=(selected_item.toString()===category._id.toString() ? true : false)) #{category.name}
         label(for="rarity") Rarity:
         select#rarity.form-control(name="rarity" type='select' placeholder='Select rarity' required='true')
-            option(value='Common') Common
-            option(value='Uncommon') Uncommon
-            option(value='Rare') Rare
-            option(value='Very Rare') Very Rare
-            option(value='Legendary') Legendary
+            option(value='Common' selected=(item===undefined || item.rarity != 'Common' ? false : 'selected')) Common
+            option(value='Uncommon' selected=(item===undefined || item.rarity != 'Uncommon' ? false : 'selected')) Uncommon
+            option(value='Rare' selected=(item===undefined || item.rarity != 'Rare' ? false : 'selected')) Rare
+            option(value='Very Rare' selected=(item===undefined || item.rarity != 'Very Rare' ? false : 'selected')) Very Rare
+            option(value='Legendary' selected=(item===undefined || item.rarity != 'Legendary' ? false : 'selected')) Legendary
         label(for="description") Description:
-        textarea#description.form-control(name="description" rows="10" required=true placeholder='Enter short item description')
+        textarea#description.form-control(name="description" rows="10" required=true placeholder='Enter short item description') #{item===undefined ? '' : item.description}
         label(for="damage") Damage (optional):
-        input#damage.form-control(type='text' name='name' placeholder='1d6 piercing')
-        //- name, description, category, rarity, damage (optional)
+        input#damage.form-control(type='text' name='name' placeholder='1d6 piercing' value=(item===undefined ? '' : item.damage))
+        
         button#submit Submit
+
     if errors
         ul
         for error in errors

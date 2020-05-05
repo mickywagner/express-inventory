@@ -91,8 +91,21 @@ exports.item_create_post = [
     }
 
 ]
-exports.item_update_get = function(req, res) {
-    res.send('FUTURE UPDATE ITEM GET')
+
+exports.item_update_get = function(req, res, next) {
+    async.parallel({
+        item: function(callback) {
+            Item.findById(req.params.id)
+                .populate('category')
+                .exec(callback)
+        },
+        categories: function(callback) {
+            Category.find().exec(callback)
+        }
+    }, function(err, results) {
+        if(err) { return next(err)}
+        res.render('item_form', { title: 'Update Item', item: results.item, categories: results.categories, selected_item: results.item.category._id})
+    })
 }
 
 exports.item_update_post = function(req, res) {
