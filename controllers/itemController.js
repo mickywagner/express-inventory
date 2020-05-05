@@ -42,7 +42,7 @@ exports.item_create_get = function(req, res, next) {
     Category.find()
         .exec(function(err, category) {
             if(err) { return next(err)}
-            res.render('item_form', {title: 'Create New Item Listing', categories: category})
+            res.render('item_form', {title: 'Create New Item Listing', categories: category, selected_item: ''})
         })
 }
 
