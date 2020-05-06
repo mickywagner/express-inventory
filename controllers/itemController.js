@@ -161,5 +161,18 @@ exports.item_delete_get = function(req, res, next) {
 }
 
 exports.item_delete_post = function(req, res, next) {
-    res.send('FUTURE DELETE ITEM POST')
+    ItemCopy.find({'item': req.params.id})
+        .exec(function(err, itemcopies) {
+            if(err) {return next(err)}
+
+            if(itemcopies.lenght > 0) {
+                res.redirect(`/store/item/${req.params.id}/delete`)
+            } else {
+                Item.findByIdAndDelete(req.params.id, {}, function(err, theitem) {
+                    if(err) { return next(err)}
+                    res.redirect('/store/items')
+                })
+            }
+        })
+    
 }
