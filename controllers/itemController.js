@@ -147,9 +147,19 @@ exports.item_update_post = [
 ]
 
 exports.item_delete_get = function(req, res, next) {
-    res.render('item_delete', {title: 'Delete Item Listing'})
+    async.parallel({
+        item: function(callback) {
+            Item.findById(req.params.id).exec(callback)
+        }, 
+        itemcopies: function(callback) {
+            ItemCopy.find({'item': req.params.id}).exec(callback)
+        },
+    }, function(err, results) {
+        if(err) {return next(err)}
+        res.render('item_delete', {title: 'Delete Item Listing', item: results.item, itemcopies: results.itemcopies})
+    })
 }
 
-exports.item_delete_post = function(req, res) {
+exports.item_delete_post = function(req, res, next) {
     res.send('FUTURE DELETE ITEM POST')
 }

@@ -2,3 +2,19 @@ extends layout
 
 block content
     h1 #{title}
+
+    h2 #{item.name} (#{item.rarity})
+    p #{item.description}
+
+    if itemcopies.length > 0
+        p #[strong To delete this item, you must delete the following copies:]
+        .itemcopy-list
+            for item in itemcopies
+                dl
+                    dt #{item._id}
+                    dd #{item.status}
+
+    else
+        form(action="" method="POST")
+            input#itemname(type='text' value=item._id hidden)
+            button Delete Item
