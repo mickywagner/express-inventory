@@ -138,7 +138,7 @@ exports.category_update_post = [
     }
 ]
 
-exports.category_delete_get = function(req, res) {
+exports.category_delete_get = function(req, res, next) {
     res.send('DELETE CATEGORY GET')
 }
 

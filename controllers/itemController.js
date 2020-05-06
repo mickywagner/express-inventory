@@ -108,9 +108,43 @@ exports.item_update_get = function(req, res, next) {
     })
 }
 
-exports.item_update_post = function(req, res) {
-    res.send('FUTURE UPDATE ITEM POST')
-}
+exports.item_update_post = [
+    body('name', 'Item name is required.').trim().isLength({min: 1}),
+    body('category', 'Category is required.').trim().isLength({min: 1}),
+    body('rarity', 'Item rarity is required.').trim().isLength({min: 1}),
+    body('description', 'Item description is required.').trim().isLength({min: 1}),
+    body('damage').optional({checkFalsy: true}).isLength({min: 3}),
+
+    sanitizeBody('*').escape(),
+
+    (req, res, next) => {
+        var errors = validationResult(req)
+
+        var item = new Item(
+            {
+                name: req.body.name,
+                description: req.body.description,
+                category: req.body.category,
+                rarity: req.body.rarity,
+                damage: req.body.damage,
+                _id: req.params.id
+            }
+        )
+
+        if(!errors.isEmpty()) {
+            Category.find()
+                .exec(function(err, categories) {
+                    if(err) { return next(err)}
+                    res.render('item_form', {title: 'Update Item', item: item, categories: categories, selected_item: item.category._id, errors: errors.array()})
+                })
+        } else {
+            Item.findByIdAndUpdate(req.params.id, item, {}, function(err, theitem) {
+                if(err) {return next(err)}
+                res.redirect(`/store/item/${req.params.id}`)
+            })
+        }
+    }
+]
 
 exports.item_delete_get = function(req, res) {
     res.send('FUTURE DELETE ITEM GET')
