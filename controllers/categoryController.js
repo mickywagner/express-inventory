@@ -112,9 +112,31 @@ exports.category_update_get = function(req, res, next) {
     
 }
 
-exports.category_update_post = function(req, res) {
-    res.send('UPDATE CATEGORY POST')
-}
+exports.category_update_post = [
+    body('name').trim().isLength({min: 1}),
+    body('description').trim().isLength({min: 1}),
+
+    sanitizeBody('*').escape(),
+
+    (req, res, next) => {
+        var errors = validationResult(req)
+
+        var category = new Category({
+            name: req.body.name,
+            description: req.body.description,
+            _id: req.params.id
+        })
+
+        if(!errors.isEmpty()) {
+            res.render('category_form', {title: 'Update Category', category: category, errors: errors.array()})
+        } else {
+            Category.findByIdAndUpdate(req.params.id, category, {}, function(err, thecategory) {
+                if(err) { return next(err)}
+                res.redirect(`/store/category/${req.params.id}`)
+            })
+        }
+    }
+]
 
 exports.category_delete_get = function(req, res) {
     res.send('DELETE CATEGORY GET')
