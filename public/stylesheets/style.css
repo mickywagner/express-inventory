@@ -8,9 +8,8 @@ body {
   width: 100vw;
   height: 100vh;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background: rgba(233, 197, 130, 0.966);
   display: grid;
-  grid-template-rows: 50px 1fr 70px;
+  grid-template-rows: 70px 1fr 70px;
   grid-template-areas:
     "h h h h h h"
     "s s s s s s"
@@ -22,9 +21,11 @@ body {
 
 header {
   grid-area: h;
-  border-bottom: 1px solid black;
+  background: greenyellow;
   display: flex;
   align-items: center;
+  border-bottom: 1px solid darkgreen;
+
 }
 
 nav {
@@ -44,10 +45,14 @@ nav a:first-of-type {
   text-decoration: none;
 }
 
+nav img {
+  padding-top: 10px;
+}
 
 main {
   grid-area: s;
   padding: 20px;
+  
 }
 
 .category-list {
