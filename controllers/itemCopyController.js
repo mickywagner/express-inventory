@@ -124,7 +124,11 @@ exports.itemCopy_update_post = [
 ]
 
 exports.itemCopy_delete_get = function(req, res, next) {
-    res.render('itemcopy_delete', {title: 'Delete Item Copy'})
+    itemCopy.findById(req.params.id).populate('item').exec(function(err, itemcopy) {
+        if(err) { return next(err)}
+        res.render('itemcopy_delete', {title: 'Delete Item Copy', itemcopy: itemcopy})
+    })
+    
 }
 
 exports.itemCopy_delete_post = function(req, res) {

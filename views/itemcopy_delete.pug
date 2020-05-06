@@ -2,3 +2,16 @@ extends layout
 
 block content
     h1 #{title}
+
+    h2 #{itemcopy.item.name}
+    p Item ID: #{itemcopy._id}
+    
+
+    p #[strong Are you sure you want to delete this item copy?]
+    
+    form(action='' method='POST')
+        input#itemcopyid.form-control(type='input' value=itemcopy.id hidden)
+        button Delete Item
+    
+    a(href=itemcopy.url) Back to Item
+    a(href='/store/itemcopies') Back to Item Copies
