@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Germania+One&family=Open+Sans:ital,wght@0,400;0,700;1,300&display=swap');
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -7,8 +9,9 @@
 body {
   width: 100vw;
   height: 100vh;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px 'Open Sans', sans-serif;
   display: grid;
+  background: rgba(155, 97, 21, 0.555);
   grid-template-rows: 70px 1fr 70px;
   grid-template-areas:
     "h h h h h h"
@@ -21,11 +24,11 @@ body {
 
 header {
   grid-area: h;
-  background: greenyellow;
+  background: rgb(167, 201, 115);
   display: flex;
   align-items: center;
   border-bottom: 1px solid darkgreen;
-
+  font-family: 'Germania One', cursive
 }
 
 nav {
@@ -37,11 +40,17 @@ nav {
 
 nav a {
   margin: 5px 10px;
+  text-transform: uppercase;
+  font-size: 1.75em;
+  color: rgb(5, 85, 5);
+}
+
+nav a:hover {
+  color: white;
 }
 
 nav a:first-of-type {
   margin-right: auto;
-  font-size: 2em;
   text-decoration: none;
 }
 
@@ -49,18 +58,55 @@ nav img {
   padding-top: 10px;
 }
 
+p {
+  padding-bottom: 10px;
+}
+
+a {
+  text-decoration: none;
+}
+
 main {
   grid-area: s;
   padding: 20px;
-  
+  background-image: url('/public/images/turtle.png');
+  overflow: auto;
 }
 
-.category-list {
-  border: 2px solid black;
+.category-list-item {
+  border: 1px solid darkgreen;
+  margin-bottom: 10px;
+}
+
+.category-list-item header {
+  padding: 10px
+}
+
+.content {
+  padding: 10px;
+  background: white;
 }
 
 .item-detail {
   border: 1px solid black;
+}
+
+.header nav {
+  display: flex;
+  font-size: 1.5em;
+  align-items: center;
+}
+
+.header nav a {
+  margin-left: auto;
+  align-self: flex-end;
+  margin-right: 10px;
+  border-radius: 5px;
+  font-size: 0.8em;
+}
+
+.header nav a:hover {
+  color: black;
 }
 
 
@@ -68,6 +114,8 @@ footer {
   grid-area: f;
   text-align: center;
   padding: 10px;
+  background: rgb(1, 44, 1);
+  color: white;
 }
 
 

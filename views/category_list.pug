@@ -1,12 +1,19 @@
 extends layout
 
 block content
-    h1 #{title} 
+    .header
+        nav
+            h1 #{title}
+            a(href="/store/category/create") Add New Category
+
     p We carry a variety of adventuring goods in the following categories: 
 
+    .category-list
     for category in category_list
-        .category-list
-            h4
-                a(href=category.url) #{category.name} 
-            p #{category.description}
+            .category-list-item
+                header
+                    h2
+                        a(href=category.url) #{category.name}
+                .content
+                    p #{category.description}
             
