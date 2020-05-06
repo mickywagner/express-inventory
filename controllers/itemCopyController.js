@@ -86,9 +86,42 @@ exports.itemCopy_update_get = function(req, res, next) {
     })
 }
 
-exports.itemCopy_update_post = function(req, res) {
-    res.send('FUTURE ITEM COPY UPDATE POST')
-}
+exports.itemCopy_update_post = [
+    body('item').trim().isLength({min: 1}),
+    body('price').trim().optional({checkFalsy: true}).isLength({min: 3}),
+    body('weight').trim().optional({checkFalsy: true}).isLength({min: 1}),
+    body('status').trim().isLength({min: 1}),
+
+    sanitizeBody('*').escape(),
+
+    (req, res, next) => {
+        var errors = validationResult(req)
+
+        var itemcopy = new itemCopy(
+            {
+                item: req.body.item,
+                price: (req.body.price ? req.body.price : ''),
+                weight: (req.body.weight ? req.body.weight : ''),
+                status: req.body.status,
+                _id: req.params.id
+            }
+        )
+
+        if(!errors.isEmpty()) {
+            Item.find()
+                .exec(function(err, items) {
+                    if(err) { return next(err)}
+                    res.render('itemcopy_form', {title: 'Update Item Copy', items: items, itemcopy: itemcopy, selected_item: itemcopy.item._id, errors: errors.array()})
+                })
+        } else {
+            itemCopy.findByIdAndUpdate(req.params.id, itemcopy, {}, function(err, theitemcopy) {
+                if(err) {return next(err)}
+                res.redirect(`/store/itemcopy/${req.params.id}`)
+            })
+        }
+        
+    }
+]
 
 exports.itemCopy_delete_get = function(req, res) {
     res.send('FUTURE ITEM COPY DELETE GET')

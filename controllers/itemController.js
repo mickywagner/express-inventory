@@ -126,7 +126,7 @@ exports.item_update_post = [
                 description: req.body.description,
                 category: req.body.category,
                 rarity: req.body.rarity,
-                damage: req.body.damage,
+                damage: (req.body.damage ? req.body.damage : null),
                 _id: req.params.id
             }
         )

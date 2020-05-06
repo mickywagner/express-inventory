@@ -10,9 +10,9 @@ block content
              for item in items
                 option(value=item._id selected=(selected_item.toString()==item._id.toString() ? 'selected' : false)) #{item.name}
         label(for='price') Price:
-        input#price.form-control(name='price' type='text' placeholder='5 platinum/gold/copper/silver pieces' required=true value=(itemcopy===undefined ? '' : itemcopy.price))
+        input#price.form-control(name='price' type='text' placeholder='5 platinum/gold/copper/silver pieces' value=(itemcopy===undefined ? '' : itemcopy.price))
         label(for='weight') Weight:
-        input#weight.form-control(name='weight' type='number' required=true min=1 value=(itemcopy===undefined ? '' : itemcopy.weight))
+        input#weight.form-control(name='weight' type='number' min=1 value=(itemcopy===undefined ? '' : itemcopy.weight))
         label(for='status') Status:
         select#status.form-control(name='status' type='select' placeholder='Select a status' required=true)
             option(value='Available' selected=(itemcopy===undefined || itemcopy.status != 'Available' ? false : 'selected')) Available
