@@ -139,9 +139,33 @@ exports.category_update_post = [
 ]
 
 exports.category_delete_get = function(req, res, next) {
-    res.render('category_delete', {title: 'Delete Category'})
+    async.parallel({
+        category: function(callback) {
+            Category.findById(req.params.id).exec(callback)
+        },
+        items: function(callback) {
+            Item.find({'category': req.params.id}).exec(callback)
+        }
+    }, function(err, results) {
+        if(err) { return next(err)}
+        res.render('category_delete', {title: 'Delete Category', items: results.items, category: results.category})
+    })
+       
 }
 
-exports.category_delete_post = function(req, res) {
-    res.send('DELETE CATEGORY POST')
+exports.category_delete_post = function(req, res, next) {
+    Item.find({'category': req.params.id})
+        .exec(function(err, items) {
+            if(err) {return next(err)}
+
+            if(items.length > 0) {
+                res.redirect(`/store/category/${req.params.id}`)
+            } else {
+                Category.findByIdAndDelete(req.params.id, {}, function(err, thecategory) {
+                    if(err) {return next(err)}
+                    console.log('category deleted')
+                    res.redirect('/store/categories')
+                })
+            }
+        })
 }

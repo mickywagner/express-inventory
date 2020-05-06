@@ -2,3 +2,22 @@ extends layout
 
 block content
     h1 #{title}
+
+    h2 #{category.name}
+    p #{category.description}
+
+    if items.length > 0 
+        p #[strong To delete this category, please delete the following items: ]
+        for item in items
+            .items-list 
+                dl
+                    dt 
+                        a(href=item.url) #{item.name} (#{item.rarity})
+                    dd #{item.description}
+    
+    else 
+        p #[strong Are you sure you want to delete this category?]
+
+        form(action="" method="POST")
+            input#categoryid.form-control(type='text' value=(category._id) hidden)
+            button Delete category
