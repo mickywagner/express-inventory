@@ -123,8 +123,8 @@ exports.itemCopy_update_post = [
     }
 ]
 
-exports.itemCopy_delete_get = function(req, res) {
-    res.send('FUTURE ITEM COPY DELETE GET')
+exports.itemCopy_delete_get = function(req, res, next) {
+    res.render('itemcopy_delete', {title: 'Delete Item Copy'})
 }
 
 exports.itemCopy_delete_post = function(req, res) {

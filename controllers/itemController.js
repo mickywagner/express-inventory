@@ -146,8 +146,8 @@ exports.item_update_post = [
     }
 ]
 
-exports.item_delete_get = function(req, res) {
-    res.send('FUTURE DELETE ITEM GET')
+exports.item_delete_get = function(req, res, next) {
+    res.render('item_delete', {title: 'Delete Item Listing'})
 }
 
 exports.item_delete_post = function(req, res) {
