@@ -166,21 +166,25 @@ footer {
 /* Forms */
 
 form {
-  border: 2px solid black;
-  background: purple;
-  color: white;
+  margin-top: 10px;
   width: 80%;
-  padding: 10px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  background: rgb(165, 173, 152);
+  border-radius: 10px;
+  border: 1px solid darkgreen;
 }
 
-input, label, textarea {
+input, label, textarea, select {
   width: 100%;
-  margin-bottom: 10px;
-  margin-top: 5px;
+  margin: 5px 0;
   font-size: 1em;
+}
+
+label {
+  font-weight: 600;
 }
 
 input, textarea {
@@ -189,7 +193,16 @@ input, textarea {
 
 form button {
   width: 20%;
+  color: white;
+  padding: 5px;
+  background: darkgreen;
+  margin-top: 10px;
   font-size: 1.2em;
   border-radius: 5px;
   align-self: center;
+}
+
+form button:hover{
+  color: black;
+  background: rgb(167, 201, 115);
 }

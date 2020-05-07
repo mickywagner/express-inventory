@@ -1,7 +1,10 @@
 extends layout
 
 block content
-    h1 #{title}
+    .header
+        nav
+            h1 #{title}
+            a(href="/store/item/create") Add New Item
     p We regularily stock the following items:
 
     .item-list
