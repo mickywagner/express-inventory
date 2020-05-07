@@ -10,15 +10,19 @@ block content
         h2 #{category.name}
         .main
             p #{category.description}
-    
-            
-            p The following #{category.name} are available in our shop:
-            ul
-            each item in items  
-                li 
-                    a(href=item.url) #{item.name}
+
+            if items.length > 0
+                p #[strong The following #{category.name} are available in our shop: ]
+                ul
+                each item in items  
+                    li 
+                        a(href=item.url) #{item.name}
             else 
-                p Whoops, we currently don't have any items in this category available. 
+                p #[strong Whoops, we currently don't have any items in this category available.] 
+    
+    .foot     
+        a(href='/store/categories') << Back to categories
+    
 
             
 

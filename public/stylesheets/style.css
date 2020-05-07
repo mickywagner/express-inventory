@@ -106,7 +106,7 @@ main {
   font-size: 0.8em;
 }
 
-.header nav a:hover, .header a:hover {
+.header nav a:hover, .header a:hover, .foot a:hover {
   color: black;
 }
 
@@ -146,6 +146,12 @@ main {
 
 .main {
   padding: 10px;
+}
+
+.foot a {
+  float: right;
+  padding: 10px;
+  color: darkgreen;
 }
 
 footer {
