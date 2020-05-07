@@ -1,20 +1,21 @@
 extends layout
 
 block content
-    h1 #{title}
-    .item-detail
-        .header
-            h2 #{item.name} (#{item.rarity})
-            p #[strong Description: ]#{item.description}
+    .header 
+        h1 #{title}
+        a(href=item.url + '/update') Update Item
+        a(href=item.url + '/delete') Delete Item
 
+    .item-detail
+        h2 #{item.name} (#{item.rarity})
         .main
+            p #[strong Description: ]#{item.description}
             if item.damage
                 p #[strong Damage:] #{item.damage}
 
             p #[strong Category:] #{item.category.name}
     
-        .item-copies-list
-            h2 Inventory summary:
+            h3 Inventory summary:
 
             each item in item_copies
 
@@ -27,7 +28,6 @@ block content
             else 
                 p Sorry, we currently have no inventory available or on order at the moment. Please check back soon!
         
-    a(href=item.url + '/update') Update Item
-    a(href=item.url + '/delete') Delete Item
+    
                    
 

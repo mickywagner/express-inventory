@@ -1,17 +1,20 @@
 extends layout
 
 block content
-    h1 #{title}
+    .header
+        h1 #{title}
+        a(href=itemcopy.url + '/update') Update Item Copy
+        a(href=itemcopy.url + '/delete') Delete Item Copy
 
-    h2 #{itemcopy.item.name} (#{itemcopy.item.rarity})
-    p #[strong Inventory ID: ] #{itemcopy.id}
+    .item-detail
+        h2 #{itemcopy.item.name} (#{itemcopy.item.rarity})
+        .main
+            p #{itemcopy.item.description}
+            p #[strong Inventory ID: ] #{itemcopy.id}
+
+            p #[strong Unit weight: ] #{itemcopy.weight}
+            p #[strong Unit price:  ] #{itemcopy.price}
+            if itemcopy.item.damage 
+            p #[strong Damage: ] #{itemcopy.item.damage}
+
     
-    p #{itemcopy.item.description}
-
-    p #[strong Unit weight: ] #{itemcopy.weight}
-    p #[strong Unit price:  ] #{itemcopy.price}
-    if itemcopy.item.damage 
-    p #[strong Damage: ] #{itemcopy.item.damage}
-
-    a(href=itemcopy.url + '/update') Update Item Copy
-    a(href=itemcopy.url + '/delete') Delete Item Copy

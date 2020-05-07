@@ -79,16 +79,17 @@ main {
 }
 
 .category-list-item header {
-  padding: 10px
+  padding: 10px;
+  background-image: url('http://cliparts.co/cliparts/rTj/rbz/rTjrbz76c.png');
+}
+
+.category-list-item header a {
+  color: white;
 }
 
 .content {
   padding: 10px;
   background: white;
-}
-
-.item-detail {
-  border: 1px solid black;
 }
 
 .header nav {
@@ -105,17 +106,54 @@ main {
   font-size: 0.8em;
 }
 
-.header nav a:hover {
+.header nav a:hover, .header a:hover {
   color: black;
 }
 
+.header {
+  display: flex;
+  align-items: center;
+}
+
+.header a {
+  text-transform: uppercase;
+  margin-left: 10px;
+  color: darkgreen;
+}
+
+.header h1 {
+  margin-right: auto;
+}
+
+
+.inventory-lists, .category-detail, .item-detail {
+  background: white;
+  margin-top: 10px;
+}
+
+.inventory-lists h3, .category-detail h2, .item-detail h2 {
+  background-image: url('http://cliparts.co/cliparts/rTj/rbz/rTjrbz76c.png');
+  font-family: 'Germania One', cursive;
+  padding: 10px;
+  font-size: 2em;
+  color: white;
+}
+
+.inventory-lists ul {
+  padding: 10px;
+  list-style-type: url('');
+}
+
+.main {
+  padding: 10px;
+}
 
 footer {
   grid-area: f;
   text-align: center;
   padding: 10px;
-  background: rgb(1, 44, 1);
-  color: white;
+  background: rgb(167, 201, 115);
+  color: rgb(5, 85, 5);
 }
 
 

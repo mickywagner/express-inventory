@@ -1,24 +1,24 @@
 extends layout
 
 block content
-    h1 #{title}
+    .header
+        h1 #{title}
+        a(href=category.url + '/update') Update Category
+        a(href=category.url + '/delete') Delete Category
 
     .category-detail
         h2 #{category.name}
-        p #{category.description}
+        .main
+            p #{category.description}
+    
+            
+            p The following #{category.name} are available in our shop:
+            ul
+            each item in items  
+                li 
+                    a(href=item.url) #{item.name}
+            else 
+                p Whoops, we currently don't have any items in this category available. 
 
-        .category-items
-        p We have a variety of items in the #{category.name} category
-
-        ul
-
-        each item in items  
-            li 
-                a(href=item.url) #{item.name}
-
-        else 
-            p Whoops, we currently don't have any items in this category available. 
-
-        a(href=category.url + '/update') Update Category
-        a(href=category.url + '/delete') Delete Category
+            
 

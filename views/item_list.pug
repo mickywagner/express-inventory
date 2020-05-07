@@ -4,11 +4,17 @@ block content
     h1 #{title}
     p We regularily stock the following items:
 
+    .item-list
     dl
+        - items.sort(function(a, b) {let textA = a; let textB = b; return (textA > textB) ? -1 : (textA < textB) ? 1 : 0 })
         each item in items
-            dt  
-                a(href=item.url) #{item.name}
+            .category-list-item
+                header
+                    h2 
+                        a(href=item.url) #{item.name}
+                .content
+                    p  #{item.description} 
+                    a(href=item.url) Click for availability
             
         else 
-            p There are no items
-
+            p This category currently has no items.
