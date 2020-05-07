@@ -12,7 +12,7 @@ block content
         select#category.form-control(name="category" type='select' placeholder='Selet Category' required=true)
             - categories.sort(function(a, b) {let textA = a.name.toUpperCase(); let textB = b.name.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
             each category in categories
-                option(value=(category._id) selected=(selected_item.toString()===category._id.toString() ? true : false)) #{category.name}
+                option(value=(category._id) selected=(selected_item.toString()===item.category._id.toString() ? true : false)) #{category.name}
         label(for="rarity") Rarity:
         select#rarity.form-control(name="rarity" type='select' placeholder='Select rarity' required='true')
             option(value='Common' selected=(item===undefined || item.rarity != 'Common' ? false : 'selected')) Common
@@ -23,8 +23,9 @@ block content
         label(for="description") Description:
         textarea#description.form-control(name="description" rows="10" required=true placeholder='Enter short item description') #{item===undefined ? '' : item.description}
         label(for="damage") Damage (optional):
-        input#damage.form-control(type='text' name='name' placeholder='1d6 piercing' value=(item===undefined ? '' : item.damage))
-        
+        input#damage.form-control(type='text' name='damage' placeholder='1d6 piercing' value=(item===undefined ? '' : item.damage))
+        //- label(for='picture') Choose an image (optional):
+        //- input#picture.form-control(type='file' name='picture' accept='image/*')
         button#submit Submit
 
     if errors

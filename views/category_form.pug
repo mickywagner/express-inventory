@@ -8,7 +8,10 @@ block content
         input#name.form-control(type='text' placeholder='Weapons, Potions, Armor, etc' name='name' value=(category===undefined ? '' : category.name))
         label(for='description') Description:
         textarea#description.form-control(rows="10" required='true' placeholder='Category description' name="description") #{category===undefined ? '' : category.description}
+        //- label(for='picture') Choose an image (optional):
+        //- input#picture.form-control(type='file' name='picture' accept='image/*')
         button#submit Submit
+
     
     if errors
        ul
