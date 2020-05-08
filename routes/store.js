@@ -1,6 +1,21 @@
 var express = require('express')
 var router = express.Router()
 
+var multer = require('multer')
+var path = require('path')
+
+const storageEngine = multer.diskStorage({
+    destination: './public/uploads',
+    filename: function(req, file, fn) {
+        fn(null, new Date().getTime().toString() + '-'+file.fieldname+path.extname(file.originalname))
+    }
+})
+
+const upload = multer({
+    storage: storageEngine,
+    limits: { fileSize: 100000 }
+})
+
 var category_controller = require('../controllers/categoryController')
 var item_controller = require('../controllers/itemController')
 var itemCopy_controller = require('../controllers/itemCopyController')
@@ -9,7 +24,7 @@ var itemCopy_controller = require('../controllers/itemCopyController')
 router.get('/', category_controller.index)
 
 router.get('/category/create', category_controller.category_create_get)
-router.post('/category/create', category_controller.category_create_post)
+router.post('/category/create', upload.single('picture'), category_controller.category_create_post)
 
 router.get('/category/:id/delete', category_controller.category_delete_get)
 router.post('/category/:id/delete', category_controller.category_delete_post)

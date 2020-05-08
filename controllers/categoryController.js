@@ -6,6 +6,7 @@ const { body, validationResult } = require('express-validator/check')
 const { sanitizeBody } = require('express-validator/filter')
 
 var async = require('async')
+var fs = require('fs')
 
 exports.index = function(req, res, next) {
 
@@ -76,12 +77,17 @@ exports.category_create_post = [
     (req, res, next) => {
         const errors = validationResult(req)
 
+        var imagePath = '/uploads/' + req.file.filename
+        console.log(imagePath)
+
         var category = new Category(
             {
                 name: req.body.name,
-                description: req.body.description
+                description: req.body.description,
+                imageURL: imagePath
             }
         )
+
 
         if (!errors.isEmpty()) {
             res.render('category_form', { title: 'Create New Equipment Category', category: category, errors: errors.array()})

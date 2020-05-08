@@ -5,7 +5,8 @@ var Schema = mongoose.Schema
 var CategorySchema = new Schema(
     {
         name: {type: String, required: true, max: 100},
-        description: {type: String, required: true}
+        description: {type: String, required: true},
+        imageURL: {type: String}
     }
 )
 

@@ -10,6 +10,9 @@ block content
         h2 #{category.name}
         .main
             p #{category.description}
+            p #{category.imageURL}
+            img(src=category.imageURL)
+           
 
             if items.length > 0
                 p #[strong The following #{category.name} are available in our shop: ]
