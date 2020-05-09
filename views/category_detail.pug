@@ -8,20 +8,22 @@ block content
 
     .category-detail
         h2 #{category.name}
-        .main
-            p #{category.description}
-            p #{category.imageURL}
-            img(src=category.imageURL)
-           
 
-            if items.length > 0
-                p #[strong The following #{category.name} are available in our shop: ]
-                ul
-                each item in items  
-                    li 
-                        a(href=item.url) #{item.name}
-            else 
-                p #[strong Whoops, we currently don't have any items in this category available.] 
+        .main
+            .img 
+                img(src=category.imageURL)
+
+            .content
+                p #{category.description}
+
+                if items.length > 0
+                    p #[strong The following #{category.name} are available in our shop: ]
+                    ul
+                    each item in items  
+                        li 
+                            a(href=item.url) #{item.name}
+                else 
+                    p #[strong Whoops, we currently don't have any items in this category available.] 
     
     .foot     
         a(href='/store/categories') << Back to categories

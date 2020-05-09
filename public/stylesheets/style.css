@@ -73,6 +73,18 @@ main {
   overflow: auto;
 }
 
+.main {
+  display: flex;
+}
+
+.img {
+  width: 30%;
+}
+
+.img img {
+  width: 100%;
+}
+
 .category-list-item {
   border: 1px solid darkgreen;
   margin-bottom: 10px;
@@ -161,6 +173,8 @@ footer {
   background: rgb(167, 201, 115);
   color: rgb(5, 85, 5);
 }
+
+
 
 
 /* Forms */
