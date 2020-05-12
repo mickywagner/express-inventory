@@ -11,6 +11,7 @@ block content
             
         .main
             .img
+                img(src=item.imageURL)
             .content
                 p #[strong Description: ]#{item.description}
                 if item.damage

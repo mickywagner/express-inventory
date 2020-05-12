@@ -3,7 +3,7 @@ extends layout
 block content
     h1 #{title}#{item ? `: ${item.name}` : null}
         
-    form(action='' method='POST')
+    form(action='' method='POST' enctype='multipart/form-data')
         label(for="name") Name:
         input#name.form-control(type='text' name='name' placeholder='Short sword, Hangover cure, blanket, etc...' value=(item===undefined ? '' : item.name))
         label(for="category") Category:
@@ -22,8 +22,8 @@ block content
         textarea#description.form-control(name="description" rows="10" required=true placeholder='Enter short item description') #{item===undefined ? '' : item.description}
         label(for="damage") Damage (optional):
         input#damage.form-control(type='text' name='damage' placeholder='1d6 piercing' value=(item===undefined ? '' : item.damage))
-        //- label(for='picture') Choose an image (optional):
-        //- input#picture.form-control(type='file' name='picture' accept='image/*')
+        label(for='picture') Choose an image (optional):
+        input#picture.form-control(type='file' name='picture' accept='image/*')
         button#submit Submit
 
     if errors

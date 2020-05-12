@@ -58,6 +58,10 @@ exports.item_create_post = [
     (req, res, next) => {
         const errors = validationResult(req)
 
+        if(req.file) {
+            var imagePath = '/uploads/' + req.file.filename
+        }
+
         var item = new Item(
             {
                 name: req.body.name,
@@ -67,6 +71,10 @@ exports.item_create_post = [
                 damage: req.body.damage
             }
         )
+
+        if(imagePath) {
+            item.imageURL = imagePath
+        }
 
         if(!errors.isEmpty()) {
             Category.find()
@@ -120,6 +128,10 @@ exports.item_update_post = [
     (req, res, next) => {
         var errors = validationResult(req)
 
+        if(req.file) {
+            var imagePath = '/uploads/' + req.file.filename
+        }
+
         var item = new Item(
             {
                 name: req.body.name,
@@ -130,6 +142,10 @@ exports.item_update_post = [
                 _id: req.params.id
             }
         )
+
+        if(imagePath) {
+            item.imageURL = imagePath
+        }
 
         if(!errors.isEmpty()) {
             Category.find()

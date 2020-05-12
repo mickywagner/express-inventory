@@ -8,7 +8,8 @@ var ItemSchema = new Schema(
         description: {type: String, required: true},
         category: { type: Schema.Types.ObjectId, ref: 'Category', required: true},
         rarity: {type: String, required: true, enum: ['Common', 'Uncommon', 'Rare', 'Very Rare', 'Legendary'], default: 'Common'},
-        damage: { type: String},    
+        damage: { type: String}, 
+        imageURL: { type: String }   
     }
 )
 
