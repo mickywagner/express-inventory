@@ -75,12 +75,11 @@ main {
 
 .main {
   display: flex;
-  border: 1px solid red;
+
 }
 
 .content {
   flex: 2;
-  border: 1px solid green;
 }
 
 .img {
