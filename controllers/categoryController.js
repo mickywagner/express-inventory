@@ -127,11 +127,21 @@ exports.category_update_post = [
     (req, res, next) => {
         var errors = validationResult(req)
 
+        if(req.file) {
+            var imagePath = '/uploads/' + req.file.filename
+        }
+        
+        console.log(req.file)
+
         var category = new Category({
             name: req.body.name,
             description: req.body.description,
             _id: req.params.id
         })
+
+        if(imagePath) {
+            category.imageURL = imagePath
+        }
 
         if(!errors.isEmpty()) {
             res.render('category_form', {title: 'Update Category', category: category, errors: errors.array()})

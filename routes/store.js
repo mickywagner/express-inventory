@@ -13,8 +13,8 @@ const storageEngine = multer.diskStorage({
 
 const upload = multer({
     storage: storageEngine,
-    limits: { fileSize: 100000 }
-})
+    limits: { fileSize: 1000000 }
+}).single('picture')
 
 var category_controller = require('../controllers/categoryController')
 var item_controller = require('../controllers/itemController')
@@ -24,13 +24,13 @@ var itemCopy_controller = require('../controllers/itemCopyController')
 router.get('/', category_controller.index)
 
 router.get('/category/create', category_controller.category_create_get)
-router.post('/category/create', upload.single('picture'), category_controller.category_create_post)
+router.post('/category/create', upload, category_controller.category_create_post)
 
 router.get('/category/:id/delete', category_controller.category_delete_get)
 router.post('/category/:id/delete', category_controller.category_delete_post)
 
 router.get('/category/:id/update', category_controller.category_update_get)
-router.post('/category/:id/update', category_controller.category_update_post)
+router.post('/category/:id/update', upload, category_controller.category_update_post)
 
 router.get('/category/:id', category_controller.category_detail)
 
