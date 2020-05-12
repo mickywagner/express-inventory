@@ -1,7 +1,7 @@
 extends layout
 
 block content
-    h1 #{title}
+    h1 #{title}#{category ? `: ${category.name}` : null}
 
     form(action='' method='POST' enctype='multipart/form-data')
         label(for='name') Name:
