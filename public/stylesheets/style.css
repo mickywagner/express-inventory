@@ -77,8 +77,12 @@ main {
   display: flex;
 }
 
+.content {
+  flex: 2;
+}
+
 .img {
-  width: 40%;
+  flex: 1;
 }
 
 .img img {
