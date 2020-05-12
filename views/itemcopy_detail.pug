@@ -9,13 +9,16 @@ block content
     .item-detail
         h2 #{itemcopy.item.name} (#{itemcopy.item.rarity})
         .main
-            p #{itemcopy.item.description}
-            p #[strong Inventory ID: ] #{itemcopy.id}
+            .img
+                
+            .content
+                p #{itemcopy.item.description}
+                p #[strong Inventory ID: ] #{itemcopy.id}
 
-            p #[strong Unit weight: ] #{itemcopy.weight}
-            p #[strong Unit price:  ] #{itemcopy.price}
-            if itemcopy.item.damage 
-            p #[strong Damage: ] #{itemcopy.item.damage}
+                p #[strong Unit weight: ] #{itemcopy.weight}
+                p #[strong Unit price:  ] #{itemcopy.price}
+                if itemcopy.item.damage 
+                p #[strong Damage: ] #{itemcopy.item.damage}
     
     .foot     
         a(href='/store/itemcopies') << Back to item copies

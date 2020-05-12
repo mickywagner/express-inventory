@@ -8,25 +8,28 @@ block content
 
     .item-detail
         h2 #{item.name} (#{item.rarity})
-        .main
-            p #[strong Description: ]#{item.description}
-            if item.damage
-                p #[strong Damage:] #{item.damage}
-
-            p #[strong Category:] #{item.category.name}
-    
-            h3 Inventory summary:
-
-            each item in item_copies
-
-                .copies
-                    a(href=item.url) #[strong Item ID: ] #{item._id}  
-                    p #[strong Price: ]#{item.price}
-                    p #[strong Weight: ]#{item.weight}
-                    p #[strong #{item.status}]
             
-            else 
-                p Sorry, we currently have no inventory available or on order at the moment. Please check back soon!
+        .main
+            .img
+            .content
+                p #[strong Description: ]#{item.description}
+                if item.damage
+                    p #[strong Damage:] #{item.damage}
+
+                p #[strong Category:] #{item.category.name}
+        
+                h3 Inventory summary:
+
+                each item in item_copies
+
+                    .copies
+                        a(href=item.url) #[strong Item ID: ] #{item._id}  
+                        p #[strong Price: ]#{item.price}
+                        p #[strong Weight: ]#{item.weight}
+                        p #[strong #{item.status}]
+                
+                else 
+                    p Sorry, we currently have no inventory available or on order at the moment. Please check back soon!
     .foot     
         a(href='/store/items') << Back to items
     
