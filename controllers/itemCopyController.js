@@ -48,6 +48,10 @@ exports.itemCopy_create_post = [
     (req, res, next) => {
         const errors = validationResult(req)
 
+        if(req.file) {
+            var imagePath = '/uploads/' + req.file.filename
+        }
+       
         var itemcopy = new itemCopy(
             {
                 item: req.body.item,
@@ -56,6 +60,10 @@ exports.itemCopy_create_post = [
                 status: req.body.status
             }
         )
+
+        if(imagePath) {
+            itemcopy.imageURL = imagePath
+        }
 
         if(!errors.isEmpty()) {
             Item.find()
@@ -97,6 +105,10 @@ exports.itemCopy_update_post = [
     (req, res, next) => {
         var errors = validationResult(req)
 
+        if(req.file) {
+            var imagePath = '/uploads/' + req.file.filename
+        }
+
         var itemcopy = new itemCopy(
             {
                 item: req.body.item,
@@ -106,6 +118,10 @@ exports.itemCopy_update_post = [
                 _id: req.params.id
             }
         )
+
+        if(imagePath) {
+            itemcopy.imageURL = imagePath
+        }
 
         if(!errors.isEmpty()) {
             Item.find()

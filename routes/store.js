@@ -55,13 +55,13 @@ router.get('/items', item_controller.item_list)
 // ITEM COPIES
 
 router.get('/itemcopy/create', itemCopy_controller.itemCopy_create_get)
-router.post('/itemcopy/create', itemCopy_controller.itemCopy_create_post)
+router.post('/itemcopy/create', upload, itemCopy_controller.itemCopy_create_post)
 
 router.get('/itemcopy/:id/delete', itemCopy_controller.itemCopy_delete_get)
 router.post('/itemcopy/:id/delete', itemCopy_controller.itemCopy_delete_post)
 
 router.get('/itemcopy/:id/update', itemCopy_controller.itemCopy_update_get)
-router.post('/itemcopy/:id/update', itemCopy_controller.itemCopy_update_post)
+router.post('/itemcopy/:id/update', upload, itemCopy_controller.itemCopy_update_post)
 
 router.get('/itemcopy/:id', itemCopy_controller.itemCopy_detail)
 

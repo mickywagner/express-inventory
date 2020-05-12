@@ -3,7 +3,7 @@ extends layout
 block content
     h1 #{title}#{itemcopy ? `: ${itemcopy.item.name}` : null}
 
-    form(action="" method='POST')
+    form(action="" method='POST' enctype='multipart/form-data') 
         label(for="item") Item: 
         select#item.form-control(name='item' type='select' placeholder="Select an item" required=true)
              - items.sort(function(a, b) {let textA = a.name.toUpperCase(); let textB = b.name.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
@@ -18,6 +18,8 @@ block content
             option(value='Available' selected=(itemcopy===undefined || itemcopy.status != 'Available' ? false : 'selected')) Available
             option(value='On Order' selected=(itemcopy===undefined || itemcopy.status != 'On Order' ? false : 'selected')) On Order
             option(value='Out of Stock' selected=(itemcopy===undefined || itemcopy.status != 'Out of Stock' ? false : 'selected')) Out of Stock
+        label(for='picture') Choose an image (optional):
+        input#picture.form-control(type='file' name='picture' accept='image/*')
         button#submit Submit
     
     if errors
