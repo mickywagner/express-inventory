@@ -9,33 +9,40 @@ block content
 
     .inventory-lists
         h3 Available:
-        ul
+        div.gallery
             each item in item_copies
                 if item.status === 'Available'
-                    li
-                        a(href=item.url) #{item.item.name} - #{item.price}
-        
+                    a(href=item.url)
+                        div.gallery-item
+                            h5 #{item.item.name} 
+                            .img
+                                img(src=item.imageURL)
+                            p #{item.price}
+            
             else 
                 p No items are currently available
 
 
         h3 On Order:
-        ul
+        div.gallery
             each item in item_copies
                 if item.status === 'On Order'
-                    li
-                        a(href=item.url) #{item.item.name} - #{item.price}
+                     a(href=item.url)
+                        div.gallery-item
+                            h5 #{item.item.name} 
+                            p #{item.price}
                 
             else 
                 p We are currently not restocking
 
         h3 Out of Stock:
-        ul
+        div.gallery
             each item in item_copies
                 if item.status === 'Out of Stock'
-                    li
-                        a(href=item.url) #{item.item.name} - #{item.price}
-                
+                    a(href=item.url)
+                        div.gallery-item
+                            h5 #{item.item.name} 
+                            p #{item.price}
             else 
                 p No items currently out of stock
 

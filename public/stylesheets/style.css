@@ -172,6 +172,38 @@ main {
   color: darkgreen;
 }
 
+.gallery {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-auto-flow: dense;
+}
+
+.gallery-item {
+  border: 1px solid black;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  margin: 5px;
+}
+
+.gallery-item h5 a {
+  color: green;
+}
+
+.gallery-item .img {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.gallery-item .img img {
+  width: 100%;
+ 
+}
+
 footer {
   grid-area: f;
   text-align: center;
