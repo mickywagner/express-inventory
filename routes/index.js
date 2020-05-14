@@ -10,7 +10,13 @@ router.get('/login', function(req, res, next) {
   res.render('login');
 });
 
+router.post('/login', function(req, res, next) {
+ 
+  res.redirect('/users')
+})
+
 router.get('/register', function(req, res, next) {
+  
   res.render('register')
 })
 
