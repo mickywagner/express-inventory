@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    h1 Please log in
+    form
+        label(for='username') Username:
+        input#username.form-control(type='text' name='username' required)
+        label(for='password') Password:
+        input#password.form-control(type='password' name='password' required)
+        button Submit
+    
+    br
+    p Don't have an account? Sign-up 
+        a(href='/register') here.
+    
