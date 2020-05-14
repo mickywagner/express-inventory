@@ -12,8 +12,7 @@ block content
         div.gallery
             each item in item_copies
                 if item.status === 'Available'
-                    a(href=item.url)
-                        div.gallery-item
+                    a(href=item.url class="gallery-item")
                             h5 #{item.item.name} 
                             .img
                                 img(src=item.imageURL)
