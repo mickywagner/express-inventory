@@ -9,10 +9,10 @@ function initialize(passport) {
                 return done(err)
             }
             if(!user) {
-                return done(null, false, { msg: "Incorrect user email"})
+                return done(null, false, { message: "Incorrect user email"})
             }
             if(user.password !== password) {
-                return done(null, false, { msg: "Incorrect password"})
+                return done(null, false, { message: "Incorrect password"})
             }
             return done(null, user)
     })}

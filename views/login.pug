@@ -2,6 +2,10 @@ extends layout
 
 block content
     h1 Please log in
+    if messages.error
+        li #{messages.error}
+        
+
     form(action='' method='POST')
         label(for='email') Email:
         input#email.form-control(type='text' name='email')

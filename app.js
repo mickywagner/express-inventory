@@ -11,6 +11,7 @@ var logger = require('morgan');
 const passport = require('passport')
 const session = require('express-session')
 const LocalStrategy = require('passport-local').Strategy
+const flash = require('express-flash')
 
 const initializePassport = require('./pssport-config')
 initializePassport(passport)
@@ -40,7 +41,7 @@ app.use(session({
 
 app.use(passport.initialize())
 app.use(passport.session())
-
+app.use(flash())
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
