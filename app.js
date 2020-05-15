@@ -4,6 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+const session = require('express-session')
+const passport = require('passport')
+const LocalStrategy = require('passport-local')
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var storeRouter = require('./routes/store');
@@ -19,6 +23,10 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+
+app.use(session({secret: 'meow-mix', resave: false, saveUnitialized: true}))
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.use(logger('dev'));
 app.use(express.json());
