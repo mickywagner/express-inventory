@@ -1,21 +1,29 @@
+if(process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-const session = require('express-session')
 const passport = require('passport')
-const LocalStrategy = require('passport-local')
+const session = require('express-session')
+const LocalStrategy = require('passport-local').Strategy
+
+const initializePassport = require('./pssport-config')
+initializePassport(passport)
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var storeRouter = require('./routes/store');
+const User = require('./models/user')
 
 var app = express();
 
 var mongoose = require('mongoose')
-var mongoDB = 'mongodb+srv://mickywagner:0l0r1neruvande@cluster0-7ldco.gcp.mongodb.net/inventory_app?retryWrites=true&w=majority'
+var mongoDB = process.env.DB_URL
 mongoose.connect(mongoDB, { useNewUrlParser: true})
 var db = mongoose.connection
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
@@ -24,7 +32,12 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-app.use(session({secret: 'meow-mix', resave: false, saveUnitialized: true}))
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false
+}))
+
 app.use(passport.initialize())
 app.use(passport.session())
 

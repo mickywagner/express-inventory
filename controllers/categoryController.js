@@ -27,7 +27,7 @@ exports.index = function(req, res, next) {
             itemCopy.countDocuments({status: 'On Order'}, callback)
         }
     }, function(err, results) {
-        res.render('index', { title: 'The Wandering Turtle Equipment Emporium', errors: err, data: results})
+        res.render('index', { title: 'The Wandering Turtle Equipment Emporium', errors: err, data: results, user: req.user})
     })
    
 }

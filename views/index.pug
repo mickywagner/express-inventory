@@ -16,6 +16,11 @@ block content
             li #[strong Total Items]: !{data.itemcopy_count}
             li #[strong Items Available for Sale]: !{data.itemcopy_count_available}
             li #[strong Items on Order: ] !{data.itemcopy_count_onorder}
+    
+    if(user) 
+        p Go to 
+            a(href='/users') Admin
+    
 
 
 //- Add listings for Rare and Legendary items

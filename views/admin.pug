@@ -1,7 +1,7 @@
 extends layout
 
 block content
-    h1 Welcome back #{name}! 
+    h1 Welcome back #{user.username}! 
 
     ul
        li 
@@ -10,3 +10,6 @@ block content
         a(href='/store/item/create') Create a new item listing
        li
         a(href='/store/itemcopy/create') Create a new item copy
+
+    br
+    a(href='/logout') LOG OUT
