@@ -3,8 +3,9 @@ extends layout
 block content
     .header
         h1 #{title}
-        a(href=itemcopy.url + '/update') Update Item Copy
-        a(href=itemcopy.url + '/delete') Delete Item Copy
+        if currentUser
+            a(href=itemcopy.url + '/update') Update Item Copy
+            a(href=itemcopy.url + '/delete') Delete Item Copy
 
     .item-detail
         h2 #{itemcopy.item.name} (#{itemcopy.item.rarity})

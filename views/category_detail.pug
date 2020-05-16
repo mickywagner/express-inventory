@@ -3,8 +3,9 @@ extends layout
 block content
     .header
         h1 #{title}
-        a(href=category.url + '/update') Update Category
-        a(href=category.url + '/delete') Delete Category
+        if currentUser
+            a(href=category.url + '/update') Update Category
+            a(href=category.url + '/delete') Delete Category
 
     .category-detail
         h2 #{category.name}
