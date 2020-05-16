@@ -11,12 +11,20 @@ router.use((req, res, next) => {
   res.locals.currentUser = req.user
   next()
 })
+
+function checkNotAuthenticated(req, res, next) {
+  if(req.isAuthenticated()) {
+    res.redirect('/')
+  }
+  next()
+}
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.redirect('/store')
 });
 
-router.get('/register', function(req, res) {
+router.get('/register', checkNotAuthenticated, function(req, res) {
   res.render('register')
 })
 
@@ -30,17 +38,17 @@ router.post('/register', function(req, res, next) {
       if(err) {
         return next(err)
       }
-      res.redirect('/users')
+      res.redirect('/login')
     })
   }) 
 })
 
-router.get('/login', function(req, res, next) {
+router.get('/login', checkNotAuthenticated, function(req, res, next) {
   res.render('login');
 });
 
 router.post('/login', passport.authenticate('local', {
-    successRedirect: '/users',
+    successRedirect: '/',
     failureRedirect: '/login',
     failureFlash: true,
   })
@@ -50,6 +58,7 @@ router.get('/logout', (req, res) => {
   req.logout()
   res.redirect('/')
 })
+
 
 
 
