@@ -7,6 +7,10 @@ const User = require('../models/user')
 const initializePassport = require('../pssport-config')
 initializePassport(passport)
 
+router.use((req, res, next) => {
+  res.locals.currentUser = req.user
+  next()
+})
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.redirect('/store')
