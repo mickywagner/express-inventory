@@ -28,7 +28,7 @@ router.get('/register', checkNotAuthenticated, function(req, res) {
   res.render('register')
 })
 
-router.post('/register', function(req, res, next) {
+router.post('/register', checkNotAuthenticated, function(req, res, next) {
   bcrypt.hash(req.body.password, 10, (err, hashedPassword) => {
     const user = new User({
       username: req.body.name,
@@ -47,7 +47,7 @@ router.get('/login', checkNotAuthenticated, function(req, res, next) {
   res.render('login');
 });
 
-router.post('/login', passport.authenticate('local', {
+router.post('/login', checkNotAuthenticated, passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/login',
     failureFlash: true,
