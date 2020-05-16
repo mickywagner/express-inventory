@@ -17,6 +17,9 @@ exports.index = function(req, res, next) {
         item_count: function(callback) {
             Item.countDocuments({}, callback)
         },
+        item_count_legendary: function(callback) {
+            Item.countDocuments({rarity: 'Legendary'}, callback)
+        },
         itemcopy_count: function(callback) {
             itemCopy.countDocuments({}, callback)
         },
@@ -26,6 +29,7 @@ exports.index = function(req, res, next) {
         itemcopy_count_onorder: function(callback) {
             itemCopy.countDocuments({status: 'On Order'}, callback)
         }
+    
     }, function(err, results) {
         res.render('index', { title: 'The Wandering Turtle Equipment Emporium', errors: err, data: results, user: req.user})
     })

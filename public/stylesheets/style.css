@@ -39,9 +39,9 @@ nav {
 }
 
 nav a {
-  margin: 5px 10px;
+  margin: 5px;
   text-transform: uppercase;
-  font-size: 1.75em;
+  font-size: 1.2em;
   color: rgb(5, 85, 5);
 }
 
@@ -75,7 +75,6 @@ main {
 
 .main {
   display: flex;
-
 }
 
 .content {
@@ -186,7 +185,6 @@ main {
   flex-direction: column;
   text-align: center;
   align-items: center;
- 
 
 }
 
@@ -215,8 +213,51 @@ footer {
 }
 
 
+/* Homepage */
 
+.home {
+  text-align: center;
+}
 
+.home h1 {
+  font-family: 'Germania One', cursive;
+  background-size: cover;
+  padding-top: 20px;
+  font-size: 3em;
+  color: darkgreen;
+  text-shadow: 1px 1px 1px black;
+}
+
+.home h2 {
+  padding-top: 5px;
+  font-family: 'Germania One', cursive;
+  color: darkgreen;
+  
+}
+
+.home p {
+  padding-top: 20px;
+}
+
+.border-img {
+  border: 15px solid transparent;
+  padding: 15px;
+  background: rgb(165, 173, 152);
+  border-image: url('http://cliparts.co/cliparts/rTj/rbz/rTjrbz76c.png') 40;
+}
+
+.inventory-summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 5px;
+}
+
+.inventory-summary .cat {
+  border: 5px solid transparent;
+  padding: 15px;
+  background: white;
+  border-image: url('http://cliparts.co/cliparts/rTj/rbz/rTjrbz76c.png') 40;
+}
 /* Forms */
 
 form {

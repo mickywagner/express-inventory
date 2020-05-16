@@ -14,21 +14,24 @@ block content
                     a(href='/store/itemcopy/create') Create a new item copy
     
     else 
-        h1 Hello! Welcome to the #{title}
-        h2 Purveyors of Adventuring Gear since 3001 Fourth Age
+        .home
+            div.border-img
+                h1 Welcome to the #{title}  
+                h2 Purveyors of Adventuring Gear since 3001 Fourth Age
 
-        p #{title} is proud to bring out gear to you. Check out our latest assortment of trinkets, finely-crafted weaponry, and everyday equipment for your adventuring needs. Peruse our inventory here:
+            p We carry an eclectic mix of items suited for adventurers of all types. From basic vituals to exotic weapons and everything in between. Our collection is gathered from all corners of the many kingdoms, the wilderlands, and beyond. Feel free to peruse our collection! 
 
-        if error
-            p Sorry! Inventory failed to load!
-        else 
-            p #{title} currently sells the following equipment categories and respective items:
-            ul
-                li #[strong Equipment Categories]: !{data.category_count}
-                li #[strong Items]: !{data.item_count}
-                li #[strong Total Items]: !{data.itemcopy_count}
-                li #[strong Items Available for Sale]: !{data.itemcopy_count_available}
-                li #[strong Items on Order: ] !{data.itemcopy_count_onorder}
+            if error
+                p Sorry! Inventory failed to load!
+            else 
+                .inventory-summary
+                    .cat #[strong Equipment Categories]: !{data.category_count}
+                    .cat #[strong Legendary Items: ] !{data.item_count_legendary}
+                    .cat #[strong Items]: !{data.item_count}
+                    .cat #[strong Total Items]: !{data.itemcopy_count}
+                    .cat #[strong Items Available for Sale]: !{data.itemcopy_count_available}
+                    .cat #[strong Items on Order: ] !{data.itemcopy_count_onorder}
+                    
 
 
 //- Add listings for Rare and Legendary items
