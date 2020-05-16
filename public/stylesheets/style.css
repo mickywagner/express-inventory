@@ -246,6 +246,10 @@ footer {
   border-image: url('http://cliparts.co/cliparts/rTj/rbz/rTjrbz76c.png') 40;
 }
 
+.border-img ul {
+  list-style-type: none;
+}
+
 .inventory-summary {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;

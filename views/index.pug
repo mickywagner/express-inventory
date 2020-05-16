@@ -1,17 +1,18 @@
 extends layout
 
 block content 
-    if(currentUser) 
-        h1 Welcome back to the shop #{user.username}! 
+    if(currentUser)
+        .border-img
+            h1 Welcome back to the shop #{user.username}! 
 
-        p Edit shop inventory below:
-            ul
-                li 
-                    a(href='/store/category/create') Create a new equipment category
-                li
-                    a(href='/store/item/create') Create a new item listing
-                li
-                    a(href='/store/itemcopy/create') Create a new item copy
+            p Edit shop inventory below:
+                ul
+                    li 
+                        a(href='/store/category/create') Create a new equipment category
+                    li
+                        a(href='/store/item/create') Create a new item listing
+                    li
+                        a(href='/store/itemcopy/create') Create a new item copy
     
     else 
         .home
