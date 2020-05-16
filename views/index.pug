@@ -1,26 +1,34 @@
 extends layout
 
 block content 
-    h1 Hello! Welcome to the #{title}
-    h2 Purveyors of Adventuring Gear since 3001 Fourth Age
+    if(currentUser) 
+        h1 Welcome back to the shop #{user.username}! 
 
-    p #{title} is proud to bring out gear to you. Check out our latest assortment of trinkets, finely-crafted weaponry, and everyday equipment for your adventuring needs. Peruse our inventory here:
-
-    if error
-        p Sorry! Inventory failed to load!
+        p Edit shop inventory below:
+            ul
+                li 
+                    a(href='/store/category/create') Create a new equipment category
+                li
+                    a(href='/store/item/create') Create a new item listing
+                li
+                    a(href='/store/itemcopy/create') Create a new item copy
+    
     else 
-        p #{title} currently sells the following equipment categories and respective items:
-        ul
-            li #[strong Equipment Categories]: !{data.category_count}
-            li #[strong Items]: !{data.item_count}
-            li #[strong Total Items]: !{data.itemcopy_count}
-            li #[strong Items Available for Sale]: !{data.itemcopy_count_available}
-            li #[strong Items on Order: ] !{data.itemcopy_count_onorder}
-    
-    if(user) 
-        p Go to 
-            a(href='/users') Admin
-    
+        h1 Hello! Welcome to the #{title}
+        h2 Purveyors of Adventuring Gear since 3001 Fourth Age
+
+        p #{title} is proud to bring out gear to you. Check out our latest assortment of trinkets, finely-crafted weaponry, and everyday equipment for your adventuring needs. Peruse our inventory here:
+
+        if error
+            p Sorry! Inventory failed to load!
+        else 
+            p #{title} currently sells the following equipment categories and respective items:
+            ul
+                li #[strong Equipment Categories]: !{data.category_count}
+                li #[strong Items]: !{data.item_count}
+                li #[strong Total Items]: !{data.itemcopy_count}
+                li #[strong Items Available for Sale]: !{data.itemcopy_count_available}
+                li #[strong Items on Order: ] !{data.itemcopy_count_onorder}
 
 
 //- Add listings for Rare and Legendary items
