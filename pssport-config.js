@@ -11,9 +11,13 @@ function initialize(passport) {
             if(!user) {
                 return done(null, false, { message: "Incorrect user email"})
             }
-            if(user.password !== password) {
-                return done(null, false, { message: "Incorrect password"})
-            }
+            bcrypt.compare(password, user.password, (err, res) => {
+                if (res) {
+                  return done(null, user)
+                } else {
+                  return done(null, false, {msg: "Incorrect password"})
+                }
+              })
             return done(null, user)
     })}
      
