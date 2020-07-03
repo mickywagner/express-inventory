@@ -14,14 +14,16 @@ router.use((req, res, next) => {
 
 function checkNotAuthenticated(req, res, next) {
   if(req.isAuthenticated()) {
-    res.redirect('/')
+    return res.redirect('/')
+  } else {
+    next()
   }
-  next()
+ 
 }
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.redirect('/store')
+   res.redirect('/store')
 });
 
 router.get('/register', checkNotAuthenticated, function(req, res) {

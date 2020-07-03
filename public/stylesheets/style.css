@@ -69,7 +69,6 @@ a {
 main {
   grid-area: s;
   padding: 20px;
-  background-image: url('/public/images/turtle.png');
   overflow: auto;
 }
 

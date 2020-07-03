@@ -14,11 +14,10 @@ function initialize(passport) {
             bcrypt.compare(password, user.password, (err, res) => {
                 if (res) {
                   return done(null, user)
-                } else {
-                  return done(null, false, {msg: "Incorrect password"})
+                } else { 
+                  return done(null, false, {message: "Incorrect password"})
                 }
-              })
-            return done(null, user)
+            })
     })}
      
     passport.use(new LocalStrategy({usernameField: 'email'}, authenticateUser)) 
