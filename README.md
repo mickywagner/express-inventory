@@ -6,8 +6,8 @@
 divided into categories, items, and item copies all of which are stored in the Mongo DB associated with the project. The homepage dynamically 
 loads the current stock. You can add, edit, delete, and view all categories and items.
 </p>
-<p>Full project brief <a href="">here</a></p>
-<p>Live version <a href="">here</a>.</p>
+<p>Full project brief <a href="https://www.theodinproject.com/courses/nodejs/lessons/inventory-application">here</a></p>
+<p>Live version <a href="https://wandering-turtle.herokuapp.com/store">here</a>.</p>
 
 
 <h3>Technical Sheet</h3>
